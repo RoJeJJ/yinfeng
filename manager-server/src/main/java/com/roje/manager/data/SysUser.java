@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author Ro
@@ -31,9 +32,9 @@ public class SysUser implements Serializable {
 
     @CreatedDate
     @Column(name = "gmt_create", updatable = false, nullable = false)
-    private Long gmtCreate;
+    private Date gmtCreate;
 
     @LastModifiedDate
     @Column(name = "gmt_modify",nullable = false)
-    private Long gmtModify;
+    private Date gmtModify;
 }

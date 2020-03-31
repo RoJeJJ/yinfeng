@@ -54,11 +54,11 @@
 </template>
 
 <script>
-  import '../assets/fontawesome/css/all.min.css'
-  import '../assets/css/adminlte.min.css'
+  import '../assets/fontawesome/css/all.css'
+  import '../assets/css/adminlte.css'
   // import 'overlayscrollbars/css/OverlayScrollbars.css'
   //js
-  import '../assets/js/adminlte.min'
+  import '../assets/js/adminlte'
 
   export default {
     name: 'Index',

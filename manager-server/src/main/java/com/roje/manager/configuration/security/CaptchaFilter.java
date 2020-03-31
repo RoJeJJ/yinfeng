@@ -40,6 +40,7 @@ public class CaptchaFilter extends OncePerRequestFilter {
                 checkCaptcha(request);
             } catch (CaptchaException e) {
                 authenticationFailureHandler.onAuthenticationFailure(request, response, e);
+                return;
             }
         }
         doFilter(request, response, filterChain);

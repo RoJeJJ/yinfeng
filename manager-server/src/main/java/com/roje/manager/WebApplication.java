@@ -16,6 +16,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @SpringBootApplication
 public class WebApplication {
     public static void main(String[] args) {
+        //设置默认表引擎
+        System.setProperty("hibernate.dialect.storage_engine","innodb");
         SpringApplication.run(WebApplication.class, args);
     }
 }

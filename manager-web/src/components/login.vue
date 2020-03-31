@@ -26,14 +26,9 @@
             </div>
           </div>
           <div class="row mb-2 mt-2">
-              <div class="input-group col-5">
+              <div class="col-5">
                 <!--suppress HtmlFormInputWithoutLabel -->
-                <input type="text" class="form-control" placeholder="验证码" name="captcha" id="captcha">
-                <div class="input-group-append">
-                  <div class="input-group-text">
-                    <span class="fa fa-refresh"></span>
-                  </div>
-                </div>
+                <input type="text" class="form-control" placeholder="验证码" name="captcha" id="captcha" style="box-shadow: none">
               </div>
             <div class="">
               <!--suppress HtmlUnknownTarget -->
@@ -61,12 +56,14 @@
 </template>
 
 <script>
-  import '../assets/fontawesome/css/all.min.css'
+  import '../assets/fontawesome/css/all.css'
   import '../assets/css/adminlte.min.css'
-  import '../assets/css/icheck-bootstrap.min.css'
+  import '../assets/bootstrap/css/bootstrap.css'
   //js
-  import '../assets/js/adminlte.min.js'
-  import captcha from '../assets/img/def_captcha.jpg'
+  import '../assets/js/jquery-3.4.1'
+  import '../assets/bootstrap/js/bootstrap'
+  import '../assets/js/adminlte.js'
+  import captcha from '../assets/img/123.png'
 
   export default {
     name: 'Login',

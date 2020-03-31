@@ -1,8 +1,3 @@
 {
   "properties": [
-    {
-      "name": "roje.web.login-page",
-      "type": "java.lang.String",
-      "description": "login page."
-    }
   ] }
