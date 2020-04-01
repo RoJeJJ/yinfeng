@@ -1,6 +1,6 @@
 -- manager.sys_user definition
 
-CREATE TABLE `sys_user` (
+CREATE TABLE IF NOT EXISTS `sys_user` (
                             `id` bigint NOT NULL AUTO_INCREMENT,
                             `gmt_create` datetime NOT NULL,
                             `gmt_modify` datetime NOT NULL,
@@ -8,4 +8,4 @@ CREATE TABLE `sys_user` (
                             `username` varchar(255) DEFAULT NULL,
                             PRIMARY KEY (`id`),
                             UNIQUE KEY `uk_username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

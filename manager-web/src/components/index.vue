@@ -54,11 +54,8 @@
 </template>
 
 <script>
-  import '../assets/fontawesome/css/all.css'
-  import '../assets/css/adminlte.css'
-  // import 'overlayscrollbars/css/OverlayScrollbars.css'
-  //js
-  import '../assets/js/adminlte'
+  // import '../assets/css/OverlayScrollbars.css'
+  // import '../assets/js/jquery.overlayScrollbars'
 
   export default {
     name: 'Index',

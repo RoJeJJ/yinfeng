@@ -1,89 +1,100 @@
 <template>
-  <div id="app" class="hold-transition login-page">
+  <div class="hold-transition login-page">
     <div class="login-box">
-      <h3 style="text-align: center"><b>游戏管理后台</b></h3>
-    </div>
-    <div class="card">
-      <div class="card-body login-card-body">
-        <p class="login-box-msg">请登录</p>
-        <form @submit.prevent="submit($event)" >
-          <div class="input-group mb-2 mt-2">
-            <!--suppress HtmlFormInputWithoutLabel -->
-            <input type="text" class="form-control" placeholder="用户名" name="username" id="username">
-            <div class="input-group-append center-vertical">
-              <div class="input-group-text">
-                <span class="fa fa-user"></span>
-              </div>
-            </div>
-          </div>
-          <div class="input-group mb-2 mt-2">
-            <!--suppress HtmlFormInputWithoutLabel -->
-            <input type="password" class="form-control" placeholder="密码" name="password" id="password">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fa fa-lock"></span>
-              </div>
-            </div>
-          </div>
-          <div class="row mb-2 mt-2">
-              <div class="col-5">
-                <!--suppress HtmlFormInputWithoutLabel -->
-                <input type="text" class="form-control" placeholder="验证码" name="captcha" id="captcha" style="box-shadow: none">
-              </div>
-            <div class="">
-              <!--suppress HtmlUnknownTarget -->
-              <img :src="captchaUrl" alt="" @click="codeUpdate" title="点击刷新" id="captcha-img" style="height: 38px;width:
-              100px">
-<!--              <a style="margin-bottom: 0"> 刷新</a>-->
-            </div>
-          </div>
-          <div class="row mb-2 mt-2">
-            <div class="col-8">
-              <div class="icheck-primary" style="text-align: left">
-                <input type="checkbox" id="rememberMe" name="rememberMe">
-                <label for="rememberMe">自动登录</label>
-              </div>
-            </div>
-            <div class="col-4">
-              <button class="btn btn-primary btn-block">登录</button>
-            </div>
-          </div>
-          <p style="font-size: small;color: red;text-align: center">{{errTip}}</p>
-        </form>
+      <div class="login-logo">
+        <h3><b>游戏管理后台</b></h3>
+      </div>
+      <!-- /.login-logo -->
+      <div class="card">
+        <div class="card-body login-card-body">
+          <p class="login-box-msg">{{loginBoxMsg}}</p>
+
+          <form @submit.prevent="submit($event)">
+            <table style="width: 100%;border-collapse: separate;border-spacing: 0 16px">
+              <tr>
+                <td colspan="6">
+                  <div class="input-group">
+                    <!--suppress HtmlFormInputWithoutLabel -->
+                    <input type="text" class="form-control" placeholder="用户名">
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span class="fas fa-user"></span>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="6">
+                  <div class="input-group">
+                    <!--suppress HtmlFormInputWithoutLabel -->
+                    <input type="password" class="form-control" placeholder="密码">
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" style="width: 40%">
+                  <!--suppress HtmlFormInputWithoutLabel -->
+                  <input type="text" class="form-control" placeholder="验证码" style="box-shadow: none">
+                </td>
+                <td colspan="2" style="width: 20%">
+                  <!--suppress HtmlUnknownTarget -->
+                  <img v-bind:src="captchaUrl" alt="">
+                </td>
+                <td colspan="2" style="width: 20%;text-align: center;vertical-align: bottom;font-size: smaller">
+                  <a href="" style="text-decoration: underline" @click="codeUpdate">刷新</a>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3">
+                  <div class="icheck-primary">
+                    <input type="checkbox" id="remember">
+                    <label for="remember">
+                      自动登录
+                    </label>
+                  </div>
+                </td>
+                <td colspan="3">
+                  <button type="submit" class="btn btn-primary btn-block">登录</button>
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+        <!-- /.login-card-body -->
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import '../assets/fontawesome/css/all.css'
-  import '../assets/css/adminlte.min.css'
-  import '../assets/bootstrap/css/bootstrap.css'
-  //js
-  import '../assets/js/jquery-3.4.1'
-  import '../assets/bootstrap/js/bootstrap'
-  import '../assets/js/adminlte.js'
-  import captcha from '../assets/img/123.png'
-
+  import '../assets/icheck-bootstrap/icheck-bootstrap.css'
+  import captcha from '../assets/img/code.jpg'
   export default {
     name: 'Login',
     data() {
       return {
-        errTip: '',
+        loginBoxMsg: "请登录",
         captchaUrl: captcha
+        // errTip: '',
+        // captchaUrl: captcha
       }
     },
     mounted() {
-      this.$data.captchaUrl = '/captcha';
+      // this.$data.captchaUrl = '/captcha';
     },
     methods: {
-      codeUpdate: function() {
-        console.log(111);
-        this.$data.captchaUrl = '/captcha?' + new Date();
+      codeUpdate: function () {
+        this.$data.captchaUrl = '/captcha?' + new Date().getTime();
       },
       submit: function (event) {
         let formData = new FormData(event.target);
-        formData.append("Content-Type","application/x-www-form-urlencoded");
+        formData.append("Content-Type", "application/x-www-form-urlencoded");
         this.axios.post('/session', formData).then(rsp => {
           console.log(rsp);
           let data = rsp.data;
